@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{amsopn}
+\usepackage[np]{numprint}
+\usepackage{dsfont}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tkz-tab}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pgfplots}
+\usepackage{geometry}
+\geometry{hscale=0.85,vscale=0.85,centering}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{diagbox}
+\usepackage{multirow}
+\usepackage[colorlinks=true,linkcolor=magenta,urlcolor=magenta]{hyperref}
+\usepackage{marvosym}
+\usepackage{fdsymbol}
+\usepackage{eurosym}
+\usepackage{enumerate}
+\usepackage{tasks}
+\usepackage{stmaryrd}
+\usepackage{xlop}
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[french]{algorithm2e}
+\usepackage{scratch3}
+\usepackage{chemfig}
+\usepackage{titlesec}
+
+% Commandes math\u00e9matiques
+\newcommand{\vect}[1]{\mathchoice%
+	{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+	{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+	{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+	{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+% Formatage des sections
+\titleformat{\section}[hang]{\color{blue}\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\color{purple}\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[hang]{\color{RoyalBlue} \bfseries}{\thesubsubsection}{1em}{}
+
+\renewcommand{\thesection}{\color{blue}\Alph{section}}
+\renewcommand{\thesubsection}{\color{purple}\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\color{RoyalBlue}\arabic{subsubsection}}
+
+% Environnements color\u00e9s
+\newsavebox{\selvestebox}
+\newenvironment{colbox}[1]
+{\newcommand\colboxcolor{#1}%
+	\begin{lrbox}{\selvestebox}%
+		\begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+		{\end{minipage}\end{lrbox}%
+	\begin{center}
+		\colorbox{\colboxcolor}{\usebox{\selvestebox}}
+\end{center}}
+
+% Environnement d\u00e9finition
+\newcounter{Definition}
+\setcounter{Definition}{1}
+\newenvironment{definition}{\medskip \noindent {\color{orange}D\u00e9finition \theDefinition} \addtocounter{Definition}{1} \newline \noindent \begin{tabular}{|m{14cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+% Environnement remarques
+\newenvironment{remarques}{\medskip \noindent {\color{BlueViolet}\underline{Remarques.}}\color{BlueViolet}}{}
+
+% Environnement exemples
+\newenvironment{exemples}{\color{blue} \medskip \noindent \underline{Exemple.}}{}
+
+% Environnement m\u00e9thode
+\newcounter{Methode}
+\setcounter{Methode}{1}
+\newenvironment{methode}[1]{\medskip \noindent {\color{PineGreen}M\u00e9thode \theMethode #1} \addtocounter{Methode}{1}
+	
+	\noindent \begin{tabular}{|m{16cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+\title{G\u00e9n\u00e9ralit\u00e9s sur les Fonctions}
+\date{}
+
+\begin{document}
+\maketitle
+
+\paragraph*{Objectif du chapitre :}
+\begin{enumerate}
+\item[\u2022] Reconna\u00eetre une fonction d\u00e9finie par un processus, une courbe, un tableau de valeurs.
+\item[\u2022] D\u00e9terminer l'image (ou un ant\u00e9c\u00e9dent) d'un nombre par une fonction connue gr\u00e2ce \u00e0 son expressions litt\u00e9rale, sa courbe repr\u00e9sentative ou son tableau de valeurs
+\end{enumerate}
+
+\section{Les fonctions en classe de troisi\u00e8me}
+
+\begin{definition}
+D\u00e9finir une \textbf{fonction} sur une partie $D$ de l'ensemble des nombres r\u00e9els $\R$, c'est associer \u00e0 tout nombre $x$ de $D$ un unique nombre r\u00e9el $y$.
+
+\noindent On note \quad $f \colon x \mapsto y$ \quad ou \quad $y = f(x)$
+
+\noindent On dit que $x$ est la \textbf{variable}.
+\end{definition}
+
+\begin{remarques}
+Une fonction $f$ d\u00e9finie sur $D$ peut \u00eatre donn\u00e9e de trois fa\u00e7ons: par une \textbf{formule} ou une \textbf{expression alg\u00e9brique}, par une \textbf{courbe repr\u00e9sentative} ou encore par un \textbf{tableau de valeurs}.           
+\end{remarques}
+
+\section{Vocabulaire}
+
+\begin{definition}
+Une \textbf{fonction} est un proc\u00e9d\u00e9 qui \u00e0 un nombre $x$ appartenant \u00e0 un ensemble $\mathcal{D}$ associe un nombre $y$.
+   
+\noindent On dit que $y$ est l'\textbf{image} de $x$ par la fonction $f$ 
+   
+\noindent On dit que $x$ est un \textbf{ant\u00e9c\u00e9dent} de $y$ par la fonction $f$.
+\end{definition}
+
+\begin{remarques}
+Pour toute fonction $f$, un nombre $x$ a une et une seule image par $f$. 
+
+\noindent Par contre, chaque nombre $y$ peut avoir plusieurs ant\u00e9c\u00e9dents, ou ne pas avoir d'ant\u00e9c\u00e9dents.
+\end{remarques}
+
+\begin{exemples}
+   Soit $g$ la fonction d\u00e9finie par $g(x)=x^2+3$.
+   \begin{enumerate}
+      \item[\u2022] L'image de $5$ est $g(5)=5^2+3=28$,
+      \item[\u2022] Les ant\u00e9c\u00e9dents de $7$ v\u00e9rifient $g(x)=7$ c'est \u00e0 dire $x^2+3=7$ soit $x=-2$ ou $x=2$,
+      \item[\u2022] Il n'y a pas d'ant\u00e9c\u00e9dent de $1$ car l'\u00e9quation $g(x)=1$ n'a pas de solution : $x^2+3=1 \Longleftrightarrow x^2=-2$.
+   \end{enumerate}
+\end{exemples}
+
+\begin{definition}
+   Pour une fonction $f$ donn\u00e9e, l'ensemble de tous les nombres r\u00e9els qui ont une image calculable par cette fonction est appel\u00e9 \textbf{ensemble de d\u00e9finition} de la fonction $f$, que l'on notera $\mathcal{D}_f$.
+\end{definition}
+
+\medskip
+Graphiquement, l'ensemble de d\u00e9finition est l'intervalle sur lequel la courbe existe.
+
+\begin{exemples}
+La fonction $f:x \mapsto \dfrac{1}{2x-4}$ a pour ensemble de d\u00e9finition $] - \infty ; 2\; [\; \cup ]\;2 ;+ \infty [$.
+\begin{enumerate}
+\item[\u2022] En effet, l'expression $\dfrac{1}{2x-4}$ n'a de sens que pour les valeurs de $x$ telles que $2x-4\neq 0$ (car le d\u00e9nominateur d'une fraction ne peut \u00eatre \u00e9gal \u00e0 0), c'est-\u00e0-dire pour $x \neq 2$,
+\item[\u2022] On dira aussi que $2$ est une \textbf{valeur interdite} pour la fonction $f$.
+\end{enumerate}
+\end{exemples}
+
+\section{Tableau de valeurs}
+
+Pour une fonction $f$ donn\u00e9e, on peut \u00e9tablir un tableau de valeurs.
+Dans ce tableau, la premi\u00e8re ligne contient des nombres r\u00e9els $x$, et la seconde ligne contient leurs images respectives $y$.
+
+\begin{exemples}
+Soit la fonction $f$ d\u00e9finie sur $\R^*$ par $f(x)=x+\dfrac{2}{x}$, \\
+on obtient le tableau suivant (gr\u00e2ce par exemple \u00e0 une calculatrice) :
+
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c||c||c||c||c||c||c||c||c||c||c|} 
+\hline
+$x$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\\hline
+$f(x)$ & $-4,7$ & $-3,7$ & $-3$ & $-3$ & & $3$ & $3$ & $3,7$ \\\hline
+\end{tabular}
+
+\noindent On remarque que dans la ligne des \u00ab y \u00bb, certaines cases peuvent rester vides. En effet, certaines fonctions n'ont pas d'image pour des valeurs de \u00ab x \u00bb 
+\end{exemples}
+
+\section{Courbe repr\u00e9sentative}
+
+\begin{definition}
+Dans un rep\u00e8re $(O,I,J)$, l'ensemble des points $M$ de coordonn\u00e9es $\left(x;f(x)\right)$ forme la \textbf{courbe repr\u00e9sentative de la fonction $f$}, souvent not\u00e9e $\mathcal{C}_f$.
+\end{definition}
+
+\begin{methode}{Construction d'une courbe repr\u00e9sentative}
+On souhaite tracer la courbe repr\u00e9sentative de la fonction $f$ d\u00e9finie sur $[-3;2]$ par : $f(x)=\dfrac{5x}{x^2+1}$.
+
+\begin{enumerate}
+\item On commence par compl\u00e9ter un tableau de valeurs :
+\begin{center}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{|c||c||c||c||c||c||c||c||c||c||c||c|}
+\hline
+$x$ & $-3$ & $-2,5$ & $-2$ & $-1,5$ & $-1$ & $-0,5$ & $0$ & $0,5$ & $1$ & $1,5$ & $2$ \\\hline
+$f(x)$& $-1,5$ & $-1,7$ & $-2$ & $-2,3$ & $-2,5$ & $-2$ & $0$ & $2$ & $2,5$ & $2,3$ & $2$ \\\hline
+\end{tabular}
+\end{center}
+
+\item Puis on place les points $M\left(x;f(x)\right)$ dans un rep\u00e8re
+\item On relie les points pour obtenir la courbe
+\end{enumerate}
+\end{methode}
+
+\begin{remarques}
+Le point de coordonn\u00e9es $(10;0.5)$ n'est pas sur la courbe repr\u00e9sentative de la fonction $f$ car $f(10)=0,495 \neq 0,5$.
+\end{remarques}
+
+\section{Lecture graphique}
+
+\textbf{M\u00e9thode pour lire une image :}
+\begin{enumerate}
+\item[\u2022] On place $x$ sur l'axe des abscisses
+\item[\u2022] On se d\u00e9place verticalement pour rencontrer $\mathcal{C}_f$
+\item[\u2022] On lit $f(x)$ sur l'axe des ordonn\u00e9es
+\end{enumerate}
+
+\textbf{M\u00e9thode pour trouver un ant\u00e9c\u00e9dent :}
+\begin{enumerate}
+\item[\u2022] On trace une horizontale passant par la valeur recherch\u00e9e
+\item[\u2022] On note les points d'intersection avec $\mathcal{C}_f$
+\item[\u2022] On se d\u00e9place verticalement vers l'axe des abscisses pour lire les ant\u00e9c\u00e9dents
+\end{enumerate}
+
+\end{document}
