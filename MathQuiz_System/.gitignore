@@ -1,0 +1,82 @@
+# Dépendances
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers de runtime
+*.pid
+*.seed
+*.pid.lock
+
+# Couverture de code
+coverage/
+.nyc_output
+
+# Répertoires de build
+build/
+dist/
+
+# Fichiers d'environnement
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+
+# Fichiers temporaires
+.tmp/
+temp/
+
+# Données de développement
+data/*.json
+data/*.csv
+data/*.xlsx
+
+# Cache des éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Fichiers de sauvegarde
+*.backup
+*.bak
+
+# Fichiers de production (si déployé)
+pm2.json
+ecosystem.config.js
+
+# Certificats SSL (si utilisés)
+*.crt
+*.key
+*.pem
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Fichiers de tests
+test-results/
+coverage/
+
+# Base de données locale (si ajoutée plus tard)
+*.db
+*.sqlite
+*.sqlite3
+
+# Configurations spécifiques utilisateur
+config/local.json
+config/development.json
+config/production.json
