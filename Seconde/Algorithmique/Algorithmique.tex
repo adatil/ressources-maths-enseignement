@@ -1,0 +1,700 @@
+%\documentclass[a4paper,10pt]{report}\input{../0.Préambule/Préambule_cours_prof}\input{0_Préambule_Info}\begin{document}
+
+\documentclass{article} %DÉSACTIVER POUR A5
+%\documentclass[a5paper]{article} %ACTIVER POUR A5
+
+%########
+% Packages #
+%########
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+%######Affichage des maths
+\DecimalMathComma %pour ne plus avoir d'espace après la virgule dans l'écriture décimale des nombres
+
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{amsopn}
+
+\usepackage[np]{numprint}%écriture des nombres avec des espaces et en écriture scientifique
+
+\usepackage{dsfont} %Pour faire le 1 double barre de la fonction caractéristque dans un enironnement maths. \mathds{1}
+%\usepackage{bbold} %Double barre mais en petit pour tout les nombres dans un environnement maths.\mathbb{1}
+
+
+%######Graphique
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tkz-tab}
+\usetikzlibrary{shapes,arrows}
+
+\usepackage{geometry} 
+\geometry{hscale=0.85,vscale=0.85,centering}
+
+%######Tableau
+\usepackage{array} %pour centrer dans un tableau
+\usepackage{colortbl} %pour colorier les cellules lignes colonnes d'un tableau: \rowcolor{}, \columncolor{}, \cellcolor{purple!25}
+\usepackage{tabularx} %quelques améliorations de l'environnement tabular
+\usepackage{diagbox} %Pour faire une diagonale dans une case d'un tableau: \diagbox{bas gauche}{haut droit}
+\usepackage{multirow} %fusionner des cellules horizontalement
+
+%######Hyperliens dans les pdf
+
+\usepackage[colorlinks=true,linkcolor=magenta,urlcolor=magenta]{hyperref}% Pour créer des liens à l'intérieur du pdf: \hyperlink{label}{texte du lien} permettra d'atteindre la cible identifiée par \hypertarget{label}{texte de la cible}. Les textes du lien et de la cible peuvent être vides.
+
+%######Des symboles et images
+
+\usepackage{marvosym} %Image de téléphone protable avec la commande \Mobilefone
+
+\usepackage{fdsymbol} %Notamment le cœur plein: \varheartsuit
+
+\usepackage{eurosym}%pour afficher le symbole euro
+
+%######Vrac
+
+\usepackage{enumerate}%énumération avec des lettres 
+\usepackage{tasks}%Pour avoir une liste en ligne utiliser \begin{tasks}(2) (pour deux colonnes) et non pas enumerate puis \task et non pas \item 
+	
+	\usepackage{stmaryrd}%pour faire des "intervalles" d'entiers \llbracket et \rrbracket
+	
+	\usepackage{xlop}%poser les calculs en colonne: \opdiv[displayintermediary=nonzero,voperation=top,shiftdecimalsep=none]{27}{45}
+	\opset{decimalsepsymbol={,}}
+	
+	\usepackage{verbatim}%pour utiliser commande \exclure et normalement pour faire l'affichage tel quel sans compiler le texte. 
+	%\usepackage{alltt}%Pour utiliser une commande latex dans un environnement verbatim il faut utiliser: alltt
+	%Pour écrire juste suelques mots en verbatim au milieu d'un phrase: \verb|quelques mots|
+	
+	\usepackage{fancyhdr}
+	
+	%######Algo
+	
+	\usepackage{listings} % \begin{lstlisting} \end{lstlisting} affiche du code comme le fait le langage choisi. \lstset{language=Pascal} \lstset{language=Python} pour choisir le langage dans le document avant chaque programme ou avant le \begin{document} pour l'appliquer à tout le document. 
+		%\lstset{} permet d'indiquer toutes les options. Pas de caractère accentué (option lourdingue à rajouter) qui vont s'ppliquer pour toute la suite du document: \lstset{language=Python}
+		%Il espossible d'inclure un code python d'un fichier extérieur \lstinputlisting{source_filename.py}.
+		%Il est possible de définir une présentation personnalisé par un ensemble de configuration enregistré dans un fichier de style
+		\lstdefinestyle{pythonstyle}{
+			language=Python,
+			backgroundcolor=\color{gray!30},   
+			commentstyle=\color{Plum},
+			keywordstyle=\color{blue},
+			numberstyle=\tiny\color{black},
+			stringstyle=\color{ForestGreen},
+			basicstyle=\ttfamily\color{black},
+			breakatwhitespace=false,         
+			breaklines=true,                 
+			captionpos=b,                    
+			keepspaces=true,                 
+			numbers=none,                   
+			numbersep=5pt,                  
+			showspaces=false,                
+			showstringspaces=false,
+			showtabs=false,                  
+			tabsize=1
+		}
+		\lstset{style=pythonstyle}
+		
+		\lstdefinestyle{bashstyle}{
+			language=bash,
+			backgroundcolor=\color{black},   
+			commentstyle=\color{white},
+			keywordstyle=\color{magenta},
+			numberstyle=\tiny\color{black},
+			stringstyle=\color{white},
+			basicstyle=\ttfamily\footnotesize\color{white},
+			breakatwhitespace=false,         
+			breaklines=true,                 
+			captionpos=b,                    
+			keepspaces=true,                
+			numbers=left,                    
+			numbersep=5pt,                  
+			showspaces=false,                
+			showstringspaces=false,
+			showtabs=false,                  
+			tabsize=1
+		}
+		%\lstset{style=bashstyle}
+		
+		\usepackage[french]{algorithm2e}%pseudocode
+		
+		\usepackage{scratch3}
+		
+		%############### Formule developpée molécule chimie
+		
+		\usepackage{chemfig}
+		
+		%#####################
+		% Commande et environnement #
+		%#####################
+		
+		\theoremstyle{plain}
+		
+		%Pour redéfinir les commande section (changer la couleur centrer):
+		\usepackage{titlesec}
+		\titleformat{\section}[hang]{\color{blue}\Large\bfseries}{\thesection}{1em}{}
+		\titleformat{\subsection}[hang]{\color{purple}\large\bfseries}{\thesubsection}{1em}{}
+		\titleformat{\subsubsection}[hang]{\color{RoyalBlue} \bfseries}{\thesubsubsection}{1em}{}
+		\titleformat{\paragraph}[hang]{}{}{1em}{}
+		\titleformat{\part}[hang]{\color{blue}\Large\bfseries}{\thepart}{1em}{}
+		
+		\renewcommand{\thesection}{\color{blue}\Alph{section}}
+		\renewcommand{\thesubsection}{\color{purple}\Roman{subsection}}
+		\renewcommand{\thesubsubsection}{\color{RoyalBlue}\arabic{subsubsection}}
+		\renewcommand{\thepart}{\color{purple}\Alph{part}}
+		\newenvironment{correction}{\color{Brown}}{\medskip}
+		
+		\newenvironment{sujet}{}{\medskip}
+		
+		%environnement bareme
+		\newenvironment{bareme}{\color{RoyalBlue}\footnotesize \hfill }{\footnotesize \emph{~points}}
+		
+		%environnement détais du barème
+		\newenvironment{details}{\color{RoyalBlue}\noindent ~\\}{~\\}
+		
+		%environnement notabene
+		\newenvironment{notabene}{\color{PineGreen}\noindent ~\\}{~\\}
+		
+		%environnement exemples
+		\newenvironment{exemples}{\color{blue} \medskip \noindent \underline{Exemples.}}{}
+		
+		%environnement remarques
+		\newenvironment{remarques}{\medskip \noindent {\color{BlueViolet}\underline{Remarques.}}\color{BlueViolet}}{}
+		
+		\newenvironment{lecon}{\color{black}}{}
+		
+		\newenvironment{culturegenerale}{\color{Violet}}{}
+		
+		
+		%Pour redéfinir les environnements exercices et autres avec de la couleur
+		\newsavebox{\selvestebox}
+		\newenvironment{colbox}[1]
+		{\newcommand\colboxcolor{#1}%
+			\begin{lrbox}{\selvestebox}%
+				\begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+				{\end{minipage}\end{lrbox}%
+			\begin{center}
+				\colorbox{\colboxcolor}{\usebox{\selvestebox}}
+		\end{center}}
+		
+		%environnement exercice
+		\newcounter{Exercice}
+		\setcounter{Exercice}{1}
+		\newcounter{Exercicecorrection}
+		\newenvironment{exercice}[1]{ \setcounter{Exercicecorrection}{\theExercice} \color{black} \begin{colbox}{LimeGreen!30} \hfill {\color{OliveGreen}Exercice \theExercice. {\color{black}#1}} \hfill \addtocounter{Exercice}{1}}{ \end{colbox} }
+		
+		%environnement exercicecorrection
+		\newenvironment{exercicecorrection}{\medskip \small \color{Brown} \noindent \underline{Correction de l'exercice \theExercicecorrection}
+			
+		}{}
+		
+		%environnement definition
+		\newcounter{Definition}
+		\setcounter{Definition}{1}
+		\newenvironment{definition}{\medskip \noindent {\color{orange}definition \theDefinition} \addtocounter{Definition}{1} \newline \noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement théorème il est possible d'ajouter un titre de théorème en mettant entre accolade le titre après le begin{theoreme}
+		\newcounter{Theoreme}
+		\setcounter{Theoreme}{1}
+		\newenvironment{theoreme}[1]{\medskip \noindent {\color{purple}Théorème \theTheoreme #1} \addtocounter{Theoreme}{1} 
+			
+			\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement proposition
+		\newcounter{Proposition}
+		\setcounter{Proposition}{1}
+		\newenvironment{proposition}[1]{\medskip \noindent {\color{PineGreen}Proposition \theProposition #1} \addtocounter{Proposition}{1}
+			
+			\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement propriété
+		\newcounter{Propriete}
+		\setcounter{Propriete}{1}
+		\newenvironment{propriete}[1]{\medskip \noindent {\color{PineGreen}Propriété \thePropriete #1} \addtocounter{Propriete}{1}
+			
+			\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement méthode
+		\newcounter{Methode}
+		\setcounter{Methode}{1}
+		\newenvironment{methode}[1]{\medskip \noindent {\color{PineGreen}Méthode \theMethode #1} \addtocounter{Methode}{1}
+			
+			\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement lemme
+		\newcounter{Lemme}
+		\setcounter{Lemme}{1}
+		\newenvironment{lemme}[1]{\medskip \noindent {\color{PineGreen}Lemme \theLemme #1} \addtocounter{Lemme}{1}
+			
+			\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement corollaire
+		\newcounter{Corollaire}
+		\setcounter{Corollaire}{1}
+		\newenvironment{corollaire}[1]{\medskip \noindent {\color{PineGreen}Corollaire \theCorollaire #1} \addtocounter{Corollaire}{1} 
+			
+			\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\ \hline \end{tabular}}
+		
+		%environnement démonstration
+		\newcounter{Demonstration}
+		\setcounter{Demonstration}{1}
+		\newenvironment{preuve}[1]{\medskip \noindent {\color{PineGreen} Démonstration} \hfill #1 \addtocounter{Demonstration}{1} \color{violet} 
+			
+		}{\hfill $\blacksquare$}
+		
+		%environnement conclusion encadré et coloré
+		\newenvironment{conclusion}
+		{\color{PineGreen}\begin{tabular}{|c|}\hline \\ \begin{minipage}{0.85\linewidth} \begin{center} }
+					{\end{center} \end{minipage} \\ \\ \hline \end{tabular} }
+		
+		%Commande pour l'objectif et l'écrire en vert
+		\newcommand{\objectif}[1]{{\color{PineGreen}#1}
+			
+			\medskip}
+		
+		%########################
+		%Test conditionnel pour l'affichage    #
+		%########################
+		\newif\ifs
+		%\strue%affiche la boite à trous
+		\sfalse%affiche la réponse
+		
+		%Pour faire une case à trou complétable sur le pdf
+		\newcounter{Trous}
+		\setcounter{Trous}{1}
+		\newcommand{\trous}[2][3cm]{
+			\ifs
+			\begin{Form}
+				\TextField[name=\theTrous ,bordercolor=,borderwidth=0, backgroundcolor=gray!20, align=1,  width=#1 ,height=0.2cm, bordersep=0,color=black] {}
+			\end{Form}
+			\xspace
+			\else
+			#2
+			\fi
+			\addtocounter{Trous}{1}
+		}
+		
+		%#########################
+		%en tête puis pied de page
+		%#########################
+		
+		\pagestyle{empty}
+		\pagestyle{fancy} 
+		\renewcommand{\headrulewidth}{0pt}%Pas de ligne horizontale en haut
+		\lhead[]{}%entre crochets pages paires entre accolades pages impaires
+		%\chead[\small ]{\footnotesize \href{http://unemainlavelautre.net/2ieme.html}{Techniques 01. Calcul numérique, évaluer une expression littérale.} }% l left, c center, r right
+		\rhead[]{}
+		\lfoot[]{}
+		\cfoot[\small -\thepage -]{\small -\thepage -}
+		\rfoot[]{}
+		
+		%############################
+		%les environnements qu'on affiche ou pas  #
+		%############################
+		
+		\newcommand{\exclure}[1]{\renewenvironment{#1}{\begingroup\comment}{\endcomment\endgroup\ignorespaces}}
+		
+		%Pour cours corrections
+		%\exclure{preuve} \exclure{exemples} \exclure{remarques} \exclure{corollaire} \exclure{lemme} \exclure{proposition} \exclure{theoreme} \exclure{culturegenerale} \exclure{definition} \exclure{lecon} \exclure{sujet} \exclure{notabene} \exclure{details} \exclure{bareme} \exclure{sujet} \exclure{correction}  \exclure{methode}
+		
+		%Pour cours exercices
+		%\exclure{preuve} \exclure{exemples} \exclure{remarques} \exclure{corollaire} \exclure{lemme} \exclure{proposition} \exclure{theoreme} \exclure{culturegenerale} \exclure{definition} \exclure{lecon} \exclure{exercicecorrection} \exclure{notabene} \exclure{details} \exclure{bareme} \exclure{sujet} \exclure{correction}  \exclure{methode}
+		
+		%Pour cours lecon
+		%\exclure{preuve} \exclure{exemples} \exclure{remarques} \exclure{lecon} \exclure{exercice} \exclure{exercicecorrection} \exclure{notabene} \exclure{details} \exclure{bareme} \exclure{sujet} \exclure{correction}
+		
+		%Pour cours intégrale
+		\exclure{details} \exclure{bareme} \exclure{sujet} \exclure{notabene} \exclure{exercicecorrection}
+		
+		%Pour devoir surveillé sujet
+		%\exclure{preuve} \exclure{exemples} \exclure{remarques} \exclure{corollaire} \exclure{lemme} \exclure{proposition} \exclure{theoreme} \exclure{culturegenerale} \exclure{definition} \exclure{lecon} \exclure{exercicecorrection} \exclure{notabene} \exclure{details} \exclure{correction}
+		
+		%Pour devoir surveillé correction
+		%\exclure{preuve} \exclure{exemples} \exclure{remarques} \exclure{corollaire} \exclure{lemme} \exclure{proposition} \exclure{theoreme} \exclure{culturegenerale} \exclure{definition} \exclure{lecon} \exclure{exercicecorrection} \exclure{notabene} \exclure{sujet}
+		
+		%Pour devoir surveillé intégrale
+		%\exclure{preuve} \exclure{exemples} \exclure{remarques} \exclure{corollaire} \exclure{lemme} \exclure{proposition} \exclure{theoreme} \exclure{culturegenerale} \exclure{definition} \exclure{lecon} \exclure{exercicecorrection} \exclure{notabene}
+		
+		%###############################
+		%#Double numérotation des pages#
+		%###############################
+		%\pagenumbering{roman} %À mettre juste avant \begin{document}. DOnc simplement décommenter.
+			%\pagenumbering{arabic} %À copier décommenté 
+			\title{Algorithmique : Débuter en Python}
+			\date{}
+			\begin{document}
+				\maketitle
+\section{Quelques rappels}
+
+\subsection{Qu'est-ce qu'un algorithme ?}
+
+\begin{definition}
+Un algorithme est un enchaînement d'étapes ou d'instructions à effectuer dans un certain  ordre et dont la réalisation va permettre la résolution d'un problème donné.
+\end{definition}
+\medskip
+
+\noindent Le mot algorithme vient du nom du mathématicien persan al-Khuw\={a}rizm\={\i} (début du \MakeUppercase{\romannumeral9}\ieme{} siècle). Dans un livre, il décrivait des procédés de calcul à suivre étape par étape pour résoudre des problèmes ramenés à des équations.
+\medskip
+
+\noindent Un algorithme doit être lisible par tous. On l'écrit en langage courant ou langage naturel.
+\medskip
+
+\noindent Un des intérêts est de pouvoir coder (traduire) un algorithme dans un langage informatique afin qu'une machine ( ordinateur, calculatrice \ldots) puisse l'exécuter rapidement et efficacement.
+
+\subsection{Qu'est-ce qui constitue un algorithme ?}
+
+\begin{tabular}{p{3.7cm}p{0.2cm}p{12cm}}
+\textit{Un début et une fin} &  & Les algorithmes sont constitués d'un nombre fini d'étapes à exécuter dans un ordre bien défini, on peut donc considérer qu'il y a un début et une fin. \\
+\textit{Des instructions} &  & Durant l'enchaînement des étapes, ces étapes vont agir. \par On va les appeler des instructions.\\
+\textit{Des variables} &  & Durant l'exécution d'un algorithme, on va avoir besoin de stocker des données, voire des résultats. Pour cela on utilise ce qu'on appelle des \og variables \fg{}. \par Le contenu d'une variable peut être modifié au cours du déroulement de l'algorithme.\\
+\end{tabular}
+ 
+\subsection{Comment analyser un algorithme ?}
+
+Pour analyser ce que fait un algorithme on peut construire un \og tableau d'étapes \fg{}.
+
+\begin{definition}
+Un tableau d'étapes contient en première ligne (ou colonne) toutes les variables et dans  les lignes (ou colonnes) suivantes toutes les étapes d'exécution (dans l'ordre) des instructions de l'algorithme.
+\end{definition}
+\medskip
+
+\begin{exemples}\\
+	
+On donne l'algorithme suivant où $ A $ et $ B $ désignent deux nombres réels :
+\medskip
+
+\begin{itemize}
+\item[•] Calculer $A + 2B$ et remplacer $B$ par le résultat obtenu (on notera $B \gets A +  2B$)\medskip
+\item[•] Calculer $B-A$ et remplacer $A$ par le résultat obtenu (on notera $A \gets B -A$)
+\end{itemize}
+\medskip
+
+\begin{minipage}{8cm}
+\begin{enumerate}
+\item Quelles sont les variables ?\medskip
+\item Faire fonctionner cet algorithme avec $A = 8$ et $B = 5$, en remplissant le tableau suivant :\medskip
+
+{\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|}
+\cline{2-3} 
+\multicolumn{1}{c|}{} & Contenu de $A$ & Contenu de $B$ \\ 
+\hline 
+Entrée & 8 & 5\\\hline 
+Étape 1 & &\\\hline 
+Étape 2 & &\\\hline 
+\end{tabular}}
+
+\end{enumerate}
+\end{minipage}
+\hspace{1mm}
+\vline
+\begin{minipage}{8cm}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Essayer avec d'autres valeurs du couple $(A, B)$.\medskip 
+
+{\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|}
+\cline{2-3} 
+\multicolumn{1}{c|}{} & Contenu de $A$ & Contenu de $B$ \\ 
+\hline 
+Entrée &&\\ \hline 
+Étape 1 &&\\ \hline 
+Étape 2 &&\\ \hline 
+\end{tabular}} 
+\medskip
+          
+\item Quelle valeur est contenue dans $ A $ à la fin de l'exécution de l'algorithme ? Justifier.      
+\end{enumerate}
+\end{minipage}
+\end{exemples}
+
+
+
+\section{Découvrir l'affectation}
+
+\noindent L'affectation consiste à attribuer une valeur à une variable.
+
+\noindent En langage courant, on écrit : Affecter à \textit{variable} la valeur \textit{valeur} ou \textit{calcul}.
+
+\noindent Par exemple : Affecter à $ A $ la valeur $ 5 $.
+
+\noindent On utilisera la notation suivante par la suite : $ A \gets 5 $.
+
+\noindent \textbf{Exercice 1 :}
+
+On considère l'algorithme suivant où $ A $ désigne un nombre entier relatif :
+
+\medskip
+
+\begin{center}
+\begin{tabularx}{0.2\linewidth}{|c|X|}
+\hline
+ligne 1 & $ B \gets 5 $ \\
+ligne 2 & $ C \gets A \times B $ \\
+ligne 3 & $ A \gets C+4 $ \\
+\hline
+\end{tabularx}
+\end{center}
+
+\begin{enumerate}
+\item \begin{enumerate}
+      \item Quelle est la valeur de $ C $ à la fin de l'exécution de l'algorithme lorsque $ A = 3 $ ?
+      \item Même question lorsque $ A = 10 $.
+      \end{enumerate}
+\item \begin{enumerate}
+      \item Quelle est la valeur de $ A $ à la fin de l'exécution de l'algorithme lorsque $ A = 8 $ ?
+      \item Même question lorsque $ A = -7 $.
+      \end{enumerate}
+\item Quelle valeur faut-il saisir au départ pour obtenir $ A = 59 $ en sortie à la fin de l'exécution de l'algorithme ?
+\end{enumerate}
+
+\medskip
+
+\noindent \textbf{Exercice 2 :}
+
+Un commerçant accorde une remise sur des articles. On souhaite connaître le montant de la remise en euros.
+
+Voici un algorithme donnant la solution au problème :
+
+$ A $ désigne le prix de départ et $ P $ la pourcentage de remise.
+
+\medskip
+
+\begin{center}
+\renewcommand{\arraystretch}{2.1}
+\begin{tabularx}{0.3\linewidth}{|c|X|}
+\hline
+ligne 1 & $ R \gets A \times \dfrac{P}{100} $  \\
+\hline
+\end{tabularx}
+\end{center}
+
+\begin{enumerate}
+\item \begin{enumerate}
+      \item Quelle est la valeur de $ R $ à la fin de l'exécution de l'algorithme lorsque $ A = 56 $ et $ P = 30 $ ?
+      \item Donner une interprétation concrète du résultat précédent.
+      \end{enumerate}
+\item Même question avec $ A = 13 $ et $ P = 45 $.
+\item Compléter l'algorithme pour déterminer également le prix à payer $ B $.
+\item \begin{enumerate}
+      \item Quelles sont les valeurs de $ R $ et $ B $ à la fin de l'exécution de l'algorithme lorsque $ A = 159 $ et $ P = 24 $ ?
+      \item Donner une interprétation concrète des résultats précédents.
+      \end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\noindent \textbf{Exercice 3 :}
+
+On considère l'algorithme suivant où $ x $ désigne un nombre réel :
+
+\medskip
+
+\begin{center}
+\begin{tabularx}{0.2\linewidth}{|c|X|}
+\hline
+ligne 1 & $ a \gets x^2+1 $ \\
+ligne 2 & $ b \gets 2a-3 $ \\
+\hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+Faire fonctionner l'algorithme en complétant le tableau qui suit.
+
+\medskip
+
+{\renewcommand{\tabularxcolumn}[1]{%
+>{\centering\arraybackslash}m{#1}}
+\begin{tabularx}{0.95\linewidth}{|c|X|X|X|X|X|}
+\hline
+Valeur de $ x $ avant l'exécution de l'algorithme & 3 & 4 & 7 & 10 & 20 \\
+\hline
+Valeur de $ a $ après l'exécution de l'algorithme & & & & & \\
+\hline
+Valeur de $ b $ après l'exécution de l'algorithme & & & & & \\
+\hline
+\end{tabularx}
+}   
+
+\medskip
+
+\noindent \textbf{Exercice 4 :}
+
+On considère l'algorithme suivant :
+
+\medskip
+
+\begin{center}
+\begin{tabularx}{0.2\linewidth}{|c|X|}
+\hline
+ligne 1 & $ x \gets 2 $ \\
+ligne 2 & $ a \gets x-1 $ \\
+ligne 3 & $ b \gets 2a $ \\
+ligne 4 & $ c \gets \dfrac{b}{2} $ \\
+ligne 5 & $ d \gets c+2 $ \\
+\hline
+\end{tabularx}
+\end{center}
+
+\begin{enumerate}
+\item Quelle est la valeur de $ d $ à la fin de l'exécution de l'algorithme ?
+\item \begin{enumerate}
+      \item Même question dans les cas suivants : on modifie la ligne 1 et on affecte à $ x $ les valeurs $ -4 $; 0; 5; 10 et 11.
+      \item Que constate-t-on ? Démontrer ce résultat.
+      \end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\noindent \textbf{Exercice 5 :}
+
+Rédiger un algorithme utilisant au moins 3 variables et dont le résultat est le triple du nombre saisi au départ.
+
+\vskip5cm
+
+\section{Programmer l'affectation}
+
+Syntaxe des instructions utiles dans cette fiche :
+
+\medskip
+
+{\renewcommand{\tabularxcolumn}[1]{%
+>{\centering\arraybackslash}m{#1}}
+
+\begin{center}
+\begin{tabularx}{0.65\linewidth}{|X|X|}
+\hline 
+\textbf{Langage naturel} & \textbf{Python} \\ 
+\hline 
+Affecter à A la valeur 5 & A = 5 \\ 
+\hline 
+Saisir $ x $ & def nom\_{}fonction($ x $) \par \textit{Dans la console, on écrira :} \par nom\_{}fonction($ \ldots $) \\ 
+\hline 
+Afficher A & return A \par \textit{si une fonction a été définie comme ci-dessus} \\
+\hline
+Afficher A & print(A) \\
+\hline
+\end{tabularx}
+\end{center}
+}
+
+$ ^*{}^*{} $ permet d'écrire en exposant. Par exemple, pour $ x^2 $, on écrit $ x^*{}^*{}2 $.
+
+\textbf{Exercice 1 :}
+
+On considère l'algorithme suivant où $ A $ désigne un nombre réel :
+
+\medskip
+
+\begin{tabularx}{0.2\linewidth}{|c|X|}
+\hline
+ligne 1 & $ A \gets 2 $ \\
+ligne 2 & $ B \gets 2 \times A $ \\
+ligne 3 & $ C \gets B^2 $ \\
+\hline
+\end{tabularx}
+
+\medskip
+
+Cet algorithme peut se traduire en langage de programmation Python : 
+
+\medskip
+
+\begin{center}
+\begin{minipage}{4cm}
+\begin{lstlisting}
+A = 2
+B = 2*A
+C = B**2
+print(C)
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+\begin{enumerate}
+\item Quelle valeur de $ C $ obtient-on à la fin de l'exécution de l'algorithme ? 
+
+      Vérifier en saisissant le programme sur Python.
+\item Modifier le programme en affectant à $A$ la valeur $4$ et en affichant également la valeur de $B$ en sortie. 
+      
+      Tester le programme et noter les valeurs obtenues en sortie.
+\item Modifier la première ligne du programme pour obtenir $C = 25$ en sortie.
+\end{enumerate}
+
+\textbf{Exercice 2 :}
+
+\begin{enumerate}
+\item Programmer avec Python chacun des algorithmes suivants. On recopiera les
+programmes saisis sur la copie.
+      
+      \begin{minipage}{6cm}
+      \begin{tabularx}{0.7\linewidth}{|c|X|}
+      \hline
+      ligne 1 & $ A \gets 7 $ \\
+      ligne 2 & $ B \gets 6 \times A $ \\
+      ligne 3 & $ C \gets A+B $ \\
+      ligne 4 & $ D \gets B-C $ \\
+      ligne 5 & Afficher $ D $ \\
+      \hline
+      \end{tabularx}
+      \end{minipage}
+      \begin{minipage}{6cm}
+      \begin{tabularx}{0.7\linewidth}{|c|X|}
+      \hline
+      ligne 1 & $ M \gets 2 $ \\
+      ligne 2 & $ N \gets 4 $ \\
+      ligne 3 & $ A \gets M \times N $ \\
+      ligne 4 & $ B \gets M+N $ \\
+      ligne 5 & $ C \gets A/B $ \\
+      ligne 6 & Afficher $ C $ \\
+      \hline
+      \end{tabularx}
+      \end{minipage}
+      \begin{minipage}{6cm}
+      \begin{tabularx}{0.7\linewidth}{|c|X|}
+      \hline
+      ligne 1 & $ A \gets -1 $ \\
+      ligne 2 & $ B \gets 6 $ \\
+      ligne 3 & $ C \gets B^{A} $ \\
+      ligne 4 & $ D \gets C^{A} $ \\
+      ligne 5 & Afficher $ C $ \\
+      ligne 6 & Afficher $ D $ \\
+      \hline
+      \end{tabularx}
+      \end{minipage}
+\item Quelle(s) valeur(s) obtient-on en sortie pour chaque programme ?
+\end{enumerate}
+\vspace{4cm}
+
+\textbf{Exercice 3 :}{Dans cet exercice on aborde la notion de fonction, proche de celle des maths}
+
+\begin{enumerate}
+\item \begin{enumerate}
+      \item Saisir et exécuter le programme Python ci-dessous.
+            
+            \medskip
+
+\begin{center}
+\begin{minipage}{6cm}
+\begin{lstlisting}
+def equation(x):
+	f = x**2-5
+	g = -3*x**2+8*x+7
+	return f,g
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+      \item Depuis la console, saisir {equation(0)}. Qu'obtient-on en sortie ?
+      \item Donner une interprétation des résultats obtenus en sortie. 
+      \end{enumerate}
+\item À l'aide du programme, calculer les images de $f(x) = x^2-5$ et $ g(x) = -3x^2+8x+7 $ pour toutes les valeurs entières de $ x $ de $ 1 $ à $ 10 $.
+\end{enumerate}
+
+\end{document}
