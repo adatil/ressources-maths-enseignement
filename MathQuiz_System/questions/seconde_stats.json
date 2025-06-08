@@ -1,0 +1,107 @@
+{
+  "level": "Seconde",
+  "chapter": "Stats_et_probabilités",
+  "description": "Questions sur les statistiques descriptives et probabilités",
+  "questions": [
+    {
+      "id": "2_stat_001",
+      "question": "La moyenne d'une série statistique est :",
+      "options": [
+        "La valeur qui apparaît le plus souvent",
+        "La somme des valeurs divisée par l'effectif total",
+        "La valeur du milieu quand on range par ordre croissant",
+        "La différence entre la plus grande et la plus petite valeur"
+      ],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "La moyenne est la somme de toutes les valeurs divisée par le nombre de valeurs"
+    },
+    {
+      "id": "2_stat_002",
+      "question": "La médiane d'une série statistique est :",
+      "options": [
+        "La moyenne des valeurs",
+        "La valeur qui apparaît le plus souvent", 
+        "La valeur qui partage la série en deux parties égales",
+        "L'écart entre les valeurs extrêmes"
+      ],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "La médiane sépare la série ordonnée en deux parties de même effectif"
+    },
+    {
+      "id": "2_stat_003",
+      "question": "Pour la série {2, 5, 5, 7, 8, 9, 12}, la médiane est :",
+      "options": ["5", "7", "6", "8"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "La série a 7 valeurs, la médiane est la 4ème valeur : 7"
+    },
+    {
+      "id": "2_stat_004",
+      "question": "Le mode d'une série statistique est :",
+      "options": [
+        "La moyenne des valeurs",
+        "La valeur du milieu",
+        "La valeur qui apparaît le plus souvent",
+        "L'écart-type"
+      ],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "Le mode est la valeur de plus grande fréquence"
+    },
+    {
+      "id": "2_stat_005",
+      "question": "L'étendue d'une série statistique est :",
+      "options": [
+        "La différence entre la plus grande et la plus petite valeur",
+        "La somme de toutes les valeurs",
+        "Le nombre de valeurs différentes",
+        "La moyenne des valeurs"
+      ],
+      "correct": 0,
+      "difficulty": "easy",
+      "explanation": "L'étendue = valeur maximale - valeur minimale"
+    },
+    {
+      "id": "2_stat_006",
+      "question": "Dans une expérience aléatoire, la probabilité d'un événement impossible est :",
+      "options": ["1", "0.5", "0", "-1"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "Un événement impossible a une probabilité de 0"
+    },
+    {
+      "id": "2_stat_007",
+      "question": "Dans une expérience aléatoire, la probabilité d'un événement certain est :",
+      "options": ["0", "0.5", "1", "2"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "Un événement certain a une probabilité de 1"
+    },
+    {
+      "id": "2_stat_008",
+      "question": "On lance un dé équilibré à 6 faces. La probabilité d'obtenir un nombre pair est :",
+      "options": ["1/6", "2/6", "3/6", "4/6"],
+      "correct": 2,
+      "difficulty": "medium",
+      "explanation": "Nombres pairs : {2, 4, 6}, donc P = 3/6 = 1/2"
+    },
+    {
+      "id": "2_stat_009",
+      "question": "Pour la série {10, 15, 15, 20, 25, 30}, la moyenne est :",
+      "options": ["19.17", "17.5", "20", "15"],
+      "correct": 0,
+      "difficulty": "medium",
+      "explanation": "Moyenne = (10+15+15+20+25+30)/6 = 115/6 ≈ 19.17"
+    },
+    {
+      "id": "2_stat_010",
+      "question": "Dans un sac, il y a 3 boules rouges et 7 boules bleues. La probabilité de tirer une boule rouge est :",
+      "options": ["3/10", "3/7", "7/10", "1/3"],
+      "correct": 0,
+      "difficulty": "medium",
+      "explanation": "P(rouge) = nombre de boules rouges / nombre total = 3/10"
+    }
+  ]
+}
