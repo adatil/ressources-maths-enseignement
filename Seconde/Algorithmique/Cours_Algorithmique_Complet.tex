@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{geometry}
+\geometry{hscale=0.85,vscale=0.85,centering}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+
+\lstdefinestyle{pythonstyle}{
+	language=Python,
+	backgroundcolor=\color{gray!30},   
+	commentstyle=\color{purple},
+	keywordstyle=\color{blue},
+	stringstyle=\color{green!70!black},
+	basicstyle=\ttfamily\color{black},
+	breaklines=true,
+	numbers=none
+}
+\lstset{style=pythonstyle}
+
+\title{Algorithmique : Débuter en Python}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Quelques rappels}
+
+\subsection{Qu'est-ce qu'un algorithme ?}
+
+Un algorithme est un enchaînement d'étapes ou d'instructions à effectuer dans un certain  ordre et dont la réalisation va permettre la résolution d'un problème donné.
+
+\medskip
+
+\noindent Le mot algorithme vient du nom du mathématicien persan al-Khuwārizm\=ī (début du \MakeUppercase{\romannumeral9}\ieme{} siècle). Dans un livre, il décrivait des procédés de calcul à suivre étape par étape pour résoudre des problèmes ramenés à des équations.
+
+\medskip
+
+\noindent Un algorithme doit être lisible par tous. On l'écrit en langage courant ou langage naturel.
+
+\medskip
+
+\noindent Un des intérêts est de pouvoir coder (traduire) un algorithme dans un langage informatique afin qu'une machine ( ordinateur, calculatrice \ldots) puisse l'exécuter rapidement et efficacement.
+
+\subsection{Qu'est-ce qui constitue un algorithme ?}
+
+\begin{tabular}{p{3.7cm}p{0.2cm}p{12cm}}
+\textit{Un début et une fin} &  & Les algorithmes sont constitués d'un nombre fini d'étapes à exécuter dans un ordre bien défini, on peut donc considérer qu'il y a un début et une fin. \\
+\textit{Des instructions} &  & Durant l'enchaînement des étapes, ces étapes vont agir. \par On va les appeler des instructions.\\
+\textit{Des variables} &  & Durant l'exécution d'un algorithme, on va avoir besoin de stocker des données, voire des résultats. Pour cela on utilise ce qu'on appelle des \og variables \fg{}. \par Le contenu d'une variable peut être modifié au cours du déroulement de l'algorithme.\\
+\end{tabular}
+ 
+\subsection{Comment analyser un algorithme ?}
+
+Pour analyser ce que fait un algorithme on peut construire un \og tableau d'étapes \fg{}.
+
+Un tableau d'étapes contient en première ligne (ou colonne) toutes les variables et dans  les lignes (ou colonnes) suivantes toutes les étapes d'exécution (dans l'ordre) des instructions de l'algorithme.
+
+\section{Découvrir l'affectation}
+
+\noindent L'affectation consiste à attribuer une valeur à une variable.
+
+\noindent En langage courant, on écrit : Affecter à \textit{variable} la valeur \textit{valeur} ou \textit{calcul}.
+
+\noindent Par exemple : Affecter à $ A $ la valeur $ 5 $.
+
+\noindent On utilisera la notation suivante par la suite : $ A \gets 5 $.
+
+\section{Programmer l'affectation}
+
+Syntaxe des instructions utiles :
+
+\medskip
+
+{\renewcommand{\tabularxcolumn}[1]{%
+>{{\centering\arraybackslash}}m{#1}}
+
+\begin{center}
+\begin{tabularx}{0.65\linewidth}{|X|X|}
+\hline 
+\textbf{Langage naturel} & \textbf{Python} \\ 
+\hline 
+Affecter à A la valeur 5 & A = 5 \\ 
+\hline 
+Saisir $ x $ & def nom\_{}fonction($ x $) \par \textit{Dans la console, on écrira :} \par nom\_{}fonction($ \ldots $) \\ 
+\hline 
+Afficher A & return A \par \textit{si une fonction a été définie comme ci-dessus} \\
+\hline
+Afficher A & print(A) \\
+\hline
+\end{tabularx}
+\end{center}
+}
+
+\textbf{Note :} ** permet d'écrire en exposant. Par exemple, pour $ x^2 $, on écrit x**2.
+
+\section{Exercices pratiques}
+
+\textbf{Exercice 1 :} Programmes de base
+
+Programmer avec Python les algorithmes suivants :
+
+\begin{center}
+\begin{minipage}{4cm}
+\begin{lstlisting}
+A = 2
+B = 2*A
+C = B**2
+print(C)
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+\textbf{Exercice 2 :} Fonctions mathématiques
+
+\begin{center}
+\begin{minipage}{6cm}
+\begin{lstlisting}
+def equation(x):
+    f = x**2-5
+    g = -3*x**2+8*x+7
+    return f,g
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+Ce programme permet de calculer les images de deux fonctions mathématiques.
+
+\end{document}

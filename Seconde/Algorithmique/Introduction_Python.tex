@@ -1,0 +1,350 @@
+%\documentclass{article} %DÉSACTIVER POUR A5
+\documentclass[a5paper]{article} %ACTIVER POUR A5
+
+%########
+% Packages #
+%########
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+%######Affichage des maths
+\DecimalMathComma %pour ne plus avoir d'espace après la virgule dans l'écriture décimale des nombres
+
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{amsopn}
+
+\usepackage[np]{numprint}%écriture des nombres avec des espaces et en écriture scientifique
+
+\usepackage{dsfont} %Pour faire le 1 double barre de la fonction caractéristque dans un enironnement maths. \mathds{1}
+%\usepackage{bbold} %Double barre mais en petit pour tout les nombres dans un environnement maths.\mathbb{1}
+
+%######Graphique
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tkz-tab}
+\usetikzlibrary{shapes,arrows}
+
+\usepackage{geometry} 
+\geometry{hscale=0.85,vscale=0.85,centering}
+
+%######Tableau
+\usepackage{array} %pour centrer dans un tableau
+\usepackage{colortbl} %pour colorier les cellules lignes colonnes d'un tableau: \rowcolor{}, \columncolor{}, \cellcolor{purple!25}
+\usepackage{tabularx} %quelques amélioraions de l'environnement tabular
+\usepackage{diagbox} %Pour faire une diagonale dans une case d'un tableau: \diagbox{bas gauche}{haut droit}
+\usepackage{multirow} %fusionner des cellules horizontalement
+
+%######Hyperliens dans les pdf
+
+\usepackage[colorlinks=true,linkcolor=magenta,urlcolor=magenta]{hyperref}% Pour créer des liens à l'intérieur du pdf: \hyperlink{label}{texte du lien} permettra d'atteindre la cible identifiée par \hypertarget{label}{texte de la cible}. Les textes du lien et de la cible peuvent être vides.
+
+%######Des symboles et images
+
+\usepackage{marvosym} %Image de téléphone protable avec la commande \Mobilefone
+
+\usepackage{fdsymbol} %Notamment le cœur plein: \varheartsuit
+
+\usepackage{eurosym}%pour afficher le symbole euro
+
+%######Vrac
+
+\usepackage{enumerate}%énumération avec des lettres 
+\usepackage{tasks}%Pour avoir une liste en ligne utiliser \begin{tasks}(2) (pour deux colonnes) et non pas enumerate puis \task et non pas \item 
+
+\usepackage{stmaryrd}%pour faire des "intervalles" d'entiers \llbracket et \rrbracket
+
+\usepackage{xlop}%poser les calculs en colonne: \opdiv[displayintermediary=nonzero,voperation=top,shiftdecimalsep=none]{27}{45}
+\opset{decimalsepsymbol={,}}
+
+\usepackage{verbatim}%pour utiliser commande \exclure et normalement pour faire l'affichage tel quel sans compiler le texte. 
+%\usepackage{alltt}%Pour utiliser une commande latex dans un environnement verbatim il faut utiliser: alltt
+%Pour écrire juste suelques mots en verbatim au milieu d'un phrase: \verb|quelques mots|
+
+\usepackage{fancyhdr}
+
+%######Algo
+
+\usepackage{listings} % \begin{lstlisting} \end{lstlisting} affiche du code comme le fait le langage choisi. \lstset{language=Pascal} \lstset{language=Python} pour choisir le langage dans le document avant chaque programme ou avant le \begin{document} pour l'appliquer à tout le document. 
+%\lstset{} permet d'indiquer toutes les options. Pas de caractère accentué (option lourdingue à rajouter) qui vont s'ppliquer pour toute la suite du document: \lstset{language=Python}
+%Il espossible d'inclure un code python d'un fichier extérieur \lstinputlisting{source_filename.py}.
+%Il est possible de définir une présentation personnalisé par un ensemble de configuration enregistré dans un fichier de style
+\lstdefinestyle{pythonstyle}{
+	language=Python,
+	backgroundcolor=\color{gray!30},   
+	commentstyle=\color{Plum},
+	keywordstyle=\color{blue},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{ForestGreen},
+	basicstyle=\ttfamily\color{black},
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=none,                   
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=1
+}
+\lstset{style=pythonstyle}
+
+\lstdefinestyle{bashstyle}{
+	language=bash,
+	backgroundcolor=\color{black},   
+	commentstyle=\color{white},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{white},
+	basicstyle=\ttfamily\footnotesize\color{white},
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=1
+}
+%\lstset{style=bashstyle}
+
+\usepackage[french]{algorithm2e}%pseudocode
+
+\usepackage{scratch3}
+
+%############### Formule developpée molécule chimie
+
+\usepackage{chemfig}
+
+%#####################
+% Commande et environnement #
+%#####################
+
+\theoremstyle{plain}
+
+%Pour redéfinir les commande section (changer la couleur centrer):
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{purple}\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[hang]{\color{RoyalBlue} \bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[hang]{}{}{1em}{}
+
+\renewcommand{\thesection}{{}}
+\renewcommand{\thesubsection}{\color{purple}\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\color{RoyalBlue}\arabic{subsubsection}}
+
+\newenvironment{correction}{\color{Brown}}{\medskip}
+
+\newenvironment{sujet}{}{\medskip}
+
+%environnement bareme
+\newenvironment{bareme}{\color{RoyalBlue}\footnotesize \hfill }{\footnotesize \emph{~points}}
+
+%environnement détais du barème
+\newenvironment{details}{\color{RoyalBlue}\noindent ~\\}{~\\}
+
+%environnement notabene
+\newenvironment{notabene}{\color{PineGreen}\noindent ~\\}{~\\}
+
+%environnement exemples
+\newenvironment{exemples}{\color{blue} \medskip \noindent \underline{Exemples.}}{}
+
+%environnement remarques
+\newenvironment{remarques}{\medskip \noindent {\color{BlueViolet}\underline{Remarques.}}\color{BlueViolet}}{}
+
+\newenvironment{lecon}{\color{black}}{}
+
+\newenvironment{culturegenerale}{\color{Violet}}{}
+
+%Pour redéfinir les environnements exercices et autres avec de la couleur
+\newsavebox{\selvestebox}
+\newenvironment{colbox}[1]
+{\newcommand\colboxcolor{#1}%
+	\begin{lrbox}{\selvestebox}%
+		\begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+		{\end{minipage}\end{lrbox}%
+	\begin{center}
+		\colorbox{\colboxcolor}{\usebox{\selvestebox}}
+\end{center}}
+
+%environnement exercice
+\newcounter{Exercice}
+\setcounter{Exercice}{1}
+\newcounter{Exercicecorrection}
+\newenvironment{exercice}[1]{ \setcounter{Exercicecorrection}{\theExercice} \color{black} \begin{colbox}{LimeGreen!30} \hfill \small {\color{OliveGreen}Exercice \theExercice. {\color{black}#1}} \hfill \addtocounter{Exercice}{1}}{ \end{colbox} }
+
+%environnement exercicecorrection
+\newenvironment{exercicecorrection}{\medskip \small \color{Brown} \noindent \underline{Correction de l'exercice \theExercicecorrection}
+	
+}{}
+
+%environnement definition
+\newcounter{Definition}
+\setcounter{Definition}{1}
+\newenvironment{definition}{\medskip \noindent {\color{orange}Définition \theDefinition} \addtocounter{Definition}{1} \newline \noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement théorème il est possible d'ajouter un titre de théorème en mettant entre accolade le titre après le begin{theoreme}
+\newcounter{Theoreme}
+\setcounter{Theoreme}{1}
+\newenvironment{theoreme}[1]{\medskip \noindent {\color{purple}Théorème \theTheoreme #1} \addtocounter{Theoreme}{1} 
+	
+	\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement proposition
+\newcounter{Proposition}
+\setcounter{Proposition}{1}
+\newenvironment{proposition}[1]{\medskip \noindent {\color{PineGreen}Proposition \theProposition #1} \addtocounter{Proposition}{1}
+	
+	\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement propriété
+\newcounter{Propriete}
+\setcounter{Propriete}{1}
+\newenvironment{propriete}[1]{\medskip \noindent {\color{PineGreen}Propriété \thePropriete #1} \addtocounter{Propriete}{1}
+	
+	\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement méthode
+\newcounter{Methode}
+\setcounter{Methode}{1}
+\newenvironment{methode}[1]{\medskip \noindent {\color{PineGreen}Méthode \theMethode #1} \addtocounter{Methode}{1}
+	
+	\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement lemme
+\newcounter{Lemme}
+\setcounter{Lemme}{1}
+\newenvironment{lemme}[1]{\medskip \noindent {\color{PineGreen}Lemme \theLemme #1} \addtocounter{Lemme}{1}
+	
+	\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement corollaire
+\newcounter{Corollaire}
+\setcounter{Corollaire}{1}
+\newenvironment{corollaire}[1]{\medskip \noindent {\color{PineGreen}Corollaire \theCorollaire #1} \addtocounter{Corollaire}{1} 
+	
+	\noindent \begin{tabular}{|m{12cm}|}\hline \\ }{\\  \hline \end{tabular}}
+
+%environnement démonstration
+\newcounter{Demonstration}
+\setcounter{Demonstration}{1}
+\newenvironment{preuve}[1]{\medskip \noindent {\color{PineGreen} Démonstration} \hfill #1 \addtocounter{Demonstration}{1} \color{violet} 
+	
+}{\hfill $\blacksquare$}
+
+%environnement conclusion encadré et coloré
+\newenvironment{conclusion}
+{\color{PineGreen}\begin{tabular}{|c|}\hline \\ \begin{minipage}{0.85\linewidth} \begin{center} }
+			{\end{center} \end{minipage} \\ \\ \hline \end{tabular} }
+
+%Commande pour l'objectif et l'écrire en vert
+\newcommand{\objectif}[1]{{\color{PineGreen}#1}
+	
+	\medskip}
+
+\usepackage{fancyhdr}
+
+\pagestyle{empty}
+\pagestyle{fancy} 
+\renewcommand{\headrulewidth}{0pt}%Pas de ligne horizontale en haut
+\lhead[]{}%entre crochets pages paires entre accolades pages impaires
+\chead[\small ]{\footnotesize \href{http://unemainlavelautre.net/2ieme.html}{03 Introduction à Python.} }% l left, c center, r right
+\rhead[]{}
+\lfoot[]{}
+\cfoot[\small -\thepage -]{\small -\thepage -}
+\rfoot[]{}
+
+\begin{document}
+
+\section{03 Introduction à Python.}
+
+\subsection{Variables.}
+
+\begin{lecon}
+	
+	Les objets élémentaires que l'on peut manipuler en Python sont les entiers, les \emph{\color{purple}booléens} (une phrase dont on peut dire si elle est vraie ou fausse), les \emph{\color{purple}flottants} (des nombres décimaux ou en écriture scientifiques pour les très grands nombres) et  les \emph{\color{purple}chaînes de caractères} (des mots).
+	
+	On appelle \emph{\color{purple}variable} une lettre ou un mot qui désigne un entier, un booléen, un flottant ou une chaîne de caractère.
+	
+\end{lecon}
+
+\subsection{Opérations en Python.}
+
+\begin{lecon}
+	
+	Puisqu'il y a des nombres on retrouve les opérations. Addition, soustraction, multiplication, et division se notent $+$, $-$, $*$ et $/$.
+	
+	La puissance se note $**$.
+	
+	Il existe d'autres opérations que nous rencontrerons moins souvent: $//$ (quotient de la division euclidienne), $\%$ reste de la division euclidienne.
+	
+\end{lecon}
+
+\subsection{Affectation, séquences.}
+
+\begin{lecon}
+	
+	L'affectation est le fait d'enregistrer dans une variable un entier, un booléen, un flottant ou une chaîne de caractère. En Python le symbole pour l'affectation est $=$. Ainsi $a=3$ signifie que la variable $a$ prend la valeur $3$. Dans certains exercices l'affectation, mais pas en Python, est notée $a \leftarrow 3$.
+	
+\end{lecon}
+
+\begin{lecon}
+	
+	\medskip
+	Une séquence est une succession de plusieurs commandes. Pour créer une nouvelle commande il suffit de passer à la ligne.
+	
+\end{lecon}
+
+\begin{lecon}
+	
+	\medskip
+	Pour choisir entre deux commandes possibles on utilise une instruction conditionnelle. Si une condition est vraie (un booléen) alors il faut effectuer une certaine commande. 
+	
+\end{lecon}
+
+\subsection{Exercices.}
+
+\begin{exercice}{A}
+	
+	Déterminez la valeur renvoyée par le programme de calcul en prenant pour valeur initiale la valeur $a$ proposée. Puis proposez une formule algébrique en fonction de $a$ exprimant le résultat renvoyé par le programme.
+	
+	\begin{tasks}(1)
+		\task $a=1$ et 
+		\begin{tabular}{|m{6cm}|}
+			\hline
+			Choisir un nombre.
+			\\
+			Ajouter $2$ à ce nombre.
+			\\
+			Multiplier le précédent résultat par $4$.
+			\\
+			Mettre le résultat au carré.
+			\\
+			\hline
+		\end{tabular}
+		\task $a=-3$ et 
+		\begin{tabular}{|m{6cm}|}
+			\hline
+			Choisir un nombre.
+			\\
+			Ajouter $3$.
+			\\
+			Multiplier le résultat par le nombre choisi.
+			\\
+			Soustraire $16$.
+			\\
+			\hline
+		\end{tabular}
+	\end{tasks}
+	
+\end{exercice}
+
+\end{document}
