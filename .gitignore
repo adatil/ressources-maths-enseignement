@@ -1,0 +1,37 @@
+# Fichiers temporaires LaTeX
+*.aux
+*.log
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+*.pre
+
+# Fichiers de sauvegarde
+*~
+*.bak
+*.swp
+*.tmp
+
+# Dossiers de compilation
+build/
+dist/
+__pycache__/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers d'éditeur
+.vscode/
+.idea/
+*.sublime-*
+
+# Fichiers GeoGebra temporaires
+*.ggb~
